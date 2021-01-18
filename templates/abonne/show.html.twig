@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonne{% endblock %}
+
+{% block body %}
+    <h1>Abonné</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ abonne.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ abonne.pseudo }}</td>
+            </tr>
+            <tr>
+                <th>Rôles</th>
+                <td>{{ abonne.rolesTexte }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ abonne.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ abonne.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+            <th>Livre</th>
+            <th>Emprunté le</th>
+            <th>Rendu le</th>
+        </thead>
+        <tbody>
+            {% for emprunt in abonne.emprunts %}
+                <tr>
+                    <td>{{emprunt.livre.titre ~ " de " ~ emprunt.livre.auteur}}</td>
+                    <td>{{emprunt.dateEmprunt|date("d/m/Y")}} </td>
+                    <td>{{emprunt.dateRetour|date("d/m/Y")}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="form-group">
+    <a href="{{ path('abonne_index') }}"class="btn btn-outline-info">Retour à la liste</a><br>
+    </div>
+    <div class="form-group">
+    <a href="{{ path('abonne_edit', {'id': abonne.id}) }}"class="btn btn-info">Modifer</a>
+    </div>
+
+    {{ include('abonne/_delete_form.html.twig') }}
+{% endblock %}

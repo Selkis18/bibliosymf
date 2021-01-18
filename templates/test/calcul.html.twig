@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block h1 %}
+  <h1>Resultat du calcul</h1>
+{% endblock %}
+
+{% block body %}
+<ul>
+  <li>{{ aa }} x {{ b }} = {{aa * b}}</li>
+  <li>{{ aa ~ " / " ~ b ~ " = " ~ (aa / b ) }}</li>
+  <li>{{ aa ~ " + " ~ b ~ " = " ~ (aa + b ) }}</li>
+  <li>{{ aa ~ " - " ~ b ~ " = " ~ (aa - b ) }}</li>
+</ul>
+{% endblock %}
+
+{% block title %}
+	Calcul
+{% endblock %}
+
+

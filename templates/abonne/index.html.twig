@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste abonné{% endblock %}
+
+{% block body %}
+    <h1>Liste des abonnés</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pseudo</th>
+                <th>Rôles</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonne in abonnes %}
+            <tr>
+                <td>{{ abonne.id }}</td>
+                <td>{{ abonne.pseudo }}</td>
+                {# Exercice : au lieu d'afficher les rôles sous forme de chaine de caractères, vous devez afficher tous les rôles de l'utilisateur en remplaçant :
+                - ROLE_ADMIN par directeur
+                - ROLE-BILBIOTHECAIRE par bibliothècaire
+                - ROLE_USER par abonné
+                - ROLE_DEV par développeur
+                Chaque rôle est séparé par une ","  #}
+
+                <td>
+                    {% for role in abonne.roles %}
+                        {% if role == "ROLE_ADMIN" %}
+                            Directeur
+                        {% elseif role == "ROLE_BIBLIOTHECAIRE"%}
+                            bibliothècaire
+                         {% elseif role == "ROLE_USER"%}
+                            Abonné
+                         {% elseif role == "ROLE_LECTEUR"%}
+                            Lecteur
+                         {% elseif role == "ROLE_DEV"%}
+                            développeur
+                         {% else %}
+                            Autre
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{{ abonne.prenom }}</td>
+                <td>{{ abonne.nom }}</td>
+                <td>
+                    <a href="{{ path('abonne_show', {'id': abonne.id}) }}"class="btn btn-outline-info">Voir</a>
+                    <a href="{{ path('abonne_edit', {'id': abonne.id}) }}"class="btn btn-outline-info">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonne_new') }}"class="btn btn-info">Ajouter un abonné</a>
+{% endblock %}

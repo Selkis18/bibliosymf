@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Abonne
+{% endblock %}
+
+{% block body %}
+	<h1>Livre {{livre.titre}} </h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>ID</th>
+				<td>{{ livre.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ livre.titre }}</td>
+			</tr>
+			<tr>
+				<th>Auteur</th>
+				<td>{{ livre.auteur}}</td>
+			</tr>
+      <tr>
+				<th>Couverture</th>
+				<td>
+            <img class="mini" src="{{asset("img/" ~ livre.couverture) }}" alt="Couverture du livre {{livre.titre}}">
+          </td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+  <tr>
+      <th colspan="3" style="text-align:center;">Nombre d'Emprunts :
+        {{livre.emprunts|length}}
+      </th>
+    </tr>
+    <tr>
+      <th colspan="3" style="text-align:center;">Emprunts</th>
+    </tr>
+        <th>Abonné</th>
+        <th>Emprunté le</th>
+        <th>Rendu le</th>
+		</thead>
+		<tbody>
+        {% for emprunt in livre.emprunts %}
+                <tr>
+                    <td>{{emprunt.abonne.pseudo}}</td>
+                    <td>{{emprunt.dateEmprunt|date("d/m/Y")}} </td>
+                    {# Si dateRetour est nulle, afficher "à rendre" sinon afficher la date de retour : #}
+                    <td>
+                      {{ emprunt.dateRetour is empty ? "à rendre" : emprunt.dateRetour|date("d/m/Y") }}
+                    </td>
+                </tr>
+            {% endfor %}
+		</tbody>
+	</table>
+
+	<div class="form-group">
+		<a href="{{path("accueil")}} " class="btn btn-outline-info">Retour à la liste</a><br>
+	</div>
+
+{% endblock %}
+

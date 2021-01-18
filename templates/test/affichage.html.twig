@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+  {#
+  En langage Twig, le . sert à accéder à l'indice d'un tableau associatif et aussi à accéder aux propriétés d'un objet (même aux propriétés privées).
+   #}
+  <p>Le prénom est {{ tab.prenom }} </p> {# Afficher le prénom en twig #}
+  <p>Le nom est {{ tab.nom }} </p>
+  <p>Il a {{ tab.age }} ans</p>
+  <p>Il habite à {{ tab.ville }}</p>
+
+  {# <p> {{ tab2[0] }} </p>  pour afficher le premier élément du tableau soit bonjour #}
+
+  {# Il n'y a qu'un seul type de structure conditionnelle : if
+    {% if condition %}
+    {% elseif condition %}
+    {% else %}
+    {% endif %}
+
+  En twig, on peut tester les vriables avec des TESTS. La syntaxe est la suivante : variable is tes defined, null, empty...)
+	#}
+
+  {% if tab2 is defined %}  {# Si tab2 est défini, on affiche. En PHP équivalent de isset #}
+
+    {# Il n'y a qu'une seule boucle (structure itérative) c'est : for
+    Elle remplace for, while, foreach et do while.
+    foreach syntaxe twig = for valeur in nom_tableau / en PHP = foreach($tableau as $valeur)
+    foreach syntaxe twig = for indice, valeur in nom_tableau / en PHP = foreach($tableau as $indice => $valeur)
+    For syntaxe twig = for i in 0..10 / en PHP = for($i=0; $i<=10, $i++) #}
+
+    <h3>Foreach</h3>
+      {% for val in tab2 %}
+        {{ val ~ " - " }} {# le ~ sert à concaténer dans twig #}
+      {% endfor %}
+
+    <h3>For</h3>
+      <table>
+      {% for i in 0..4 %}
+        <tr>
+          <td>{{i}}</td>
+          <td>{{ tab2[i] }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+
+    <h3>Foreach avec indices</h3>
+      <table>
+      {% for indice, valeur in tab2 %}
+        <tr>
+          <td>{{indice}}</td>
+          <td>{{ valeur }}</td>
+        </tr>
+      {% endfor %}
+      </table>
+
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Abonne{% endblock %}
+
+{% block body %}
+    <h1>Edit Abonne</h1>
+
+    {{ include('abonne/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <div class="form-group">
+        <a href="{{ path('abonne_index') }}"class="btn btn-outline-info">Retour à la liste</a>
+    </div>
+    {{ include('abonne/_delete_form.html.twig') }}
+{% endblock %}

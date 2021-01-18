@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout abonné{% endblock %}
+
+{% block h1 %}Ajouter un abonné{% endblock %}
+
+{% block body %}
+
+    {{ include('abonne/_form.html.twig') }}
+
+    <div class="form-group">
+        <a href="{{ path('abonne_index') }}"class="btn btn-outline-info">Retour à la liste</a>
+    </div>
+{% endblock %}

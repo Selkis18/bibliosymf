@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{% if livre is defined %}
+		livre : modifer n°
+		{{livre.id}}
+	{% else %}
+		livre : ajouter
+	{% endif %}
+{% endblock %}
+
+{% block h1 %}
+	{# Exercice : si on affiche le formulaire pour modififer : #}
+	{{ livre is defined ? "Modifier le livre n°" ~ livre.id : "Ajouter un livre" }}
+{% endblock %}
+
+{% block body %}
+
+<form action="" method="POST">
+	<div class="form-group">
+		<label for="titre">Titre</label>
+		<input type="text" name="titre" id="titre" class="form-control" value="{{ livre is defined ? livre.titre : "" }}"></input>
+	</div>
+	<div class="form-group">
+		<label for="auteur">Auteur</label>
+		<input type="text" name="auteur" id="auteur" class="form-control" value="{{livre is defined ? livre.auteur : "" }}"></input>
+
+	</div>
+	<button class="btn btn-info">Enregistrer</button>
+</form>
+{% endblock %}
+
+
+

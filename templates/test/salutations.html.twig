@@ -1,0 +1,31 @@
+{# Commentaire twig
+
+  {% %} = balise twig
+  extends = permet de dire que la vue actuelle hérite d'une autre vue.
+  Le nom du fichier est donné à partir du dossier "templates".
+  Le contenu qui va être affiché par la vue parent doit être dans une balise block
+
+  {% block nom_du_block %} {% endblock %}
+
+  {{ }} = équivalent à la fonction echo de php <?= ?>
+
+ #}
+{% extends "base.html.twig" %} {# doit être au debut du fichier. Hérite du ficier base.html.twig. Par contre les balises qui existent deja dans le fichier base.html.twig seront écrasées par les balises crées dans ce fichier #}
+
+{% block body %}
+   {{ parent()}} {# parent() renvoie le contenu du block dans lequel elle est appelée (ici le block body du fichier parent base.html.twig #}
+
+  <h2>Bonjour</h2>
+{% endblock %}
+
+{% block title %}
+  Salutations
+{% endblock %}
+
+{% block h1 %}
+	Salutations
+{% endblock %}
+
+
+
+
